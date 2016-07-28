@@ -215,8 +215,10 @@ module Mongoid
       #
       # @since 2.4.4
       def included?(fields)
-        (fields.values.first == 1 && fields[name.to_s] == 1) ||
-          (fields.values.first == 0 && !fields.has_key?(name.to_s))
+        first = fields.values.first
+        name_s = name.to_s
+        (first == 1 && fields[name_s] == 1) ||
+          (first == 0 && !fields.has_key?(name_s))
       end
 
       # Get the evaluated default.
